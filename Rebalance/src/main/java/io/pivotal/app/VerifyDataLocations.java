@@ -34,7 +34,7 @@ public class VerifyDataLocations {
 					.getPrimaryMemberForKey(customers,
 							(Integer) entry.getKey());
 			System.out.println(String.format(
-					"\"Primary Member [Id=%s - Key=%s]", member.getId(), entry.getKey()));
+					"\"Primary Member [Name=%s - Key=%s - Value=%s]", member.getName(), entry.getKey(), entry.getValue()));
 		}
 
 		cache.close();

@@ -13,17 +13,15 @@ public class StartPeer {
 		// Create cache
 		Cache cache = new CacheFactory()
 				.set("log-level", "error")
+				.set("name", args[0])
 				.set("cache-xml-file", "config/cache.xml").create();
 
-		System.out.println("Peer " + (cache.getMembers().size()+1) + " started.");
+		System.out.println(args[0] + " started.");
 
-		// Wait to stop
-		System.out.println("Hit ENTER to stop this server");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		br.readLine();
-
+		// Waiting for other process
+		Thread.sleep(10000);
+		
 		// Close cache
 		cache.close();
-
 	}
 }
