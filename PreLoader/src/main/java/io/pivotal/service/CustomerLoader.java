@@ -1,10 +1,10 @@
 package io.pivotal.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import io.pivotal.domain.Customer;
 import io.pivotal.util.CustomerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import com.gemstone.gemfire.cache.Region;
 
@@ -21,19 +21,19 @@ public class CustomerLoader {
 		this.customerFactory = new CustomerFactory();
 	}
 	
-	public void bulkInsertion() {
+	public void preLoad() {
 		Map<Integer, Customer> buffer = new HashMap<Integer, Customer>();
 
-		for (int i = 0; i < SAMPLE_SIZE; i++) {
-			Customer customer = customerFactory.generateCustomer(i+1);
-			buffer.put(i + 1, customer);
+		for (int i = 1; i < SAMPLE_SIZE + 1; i++) {
+			Customer customer = customerFactory.generateCustomer(i);
+			buffer.put(i, customer);
 
 			if ((i % BATCH_SIZE) == 0) {
 				// ready to insert a batch into region
 				customerRegion.putAll(buffer);
 				buffer.clear();
 
-				System.out.println("Inserted " + BATCH_SIZE + " records");
+				System.out.println("Inserted " + BATCH_SIZE + " records. Last inserted: " + customer);
 			}
 		}
 
@@ -42,6 +42,4 @@ public class CustomerLoader {
 			buffer.clear();
 		}
 	}
-	
-	
 }

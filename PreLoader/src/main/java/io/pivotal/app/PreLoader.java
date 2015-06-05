@@ -8,25 +8,30 @@ import com.gemstone.gemfire.cache.CacheFactory;
 import com.gemstone.gemfire.cache.Region;
 
 public class PreLoader {
+	
 	public static void main(String[] args) {
+		PreLoader preloader = new PreLoader();
+		preloader.load("Customer");
+	}
+	
+	
+	public void load(String regionType) {
 		// Create cache
-		Cache cache = new CacheFactory().set("name", "PreLoader")
-				.set("log-level", "error")
-				.set("cache-xml-file", "config/cache.xml").create();
+		Cache cache = new CacheFactory()
+			.set("name", "PreLoader")
+			.set("log-level", "error")
+			.set("cache-xml-file", "config/cache.xml").create();
 
 		// Get the customer region
-		Region<Integer, Customer> customers = cache.getRegion("Customer");
-		System.out.println("Got the Customer Region: " + customers);
+		Region<Integer, Customer> region = cache.getRegion(regionType);
+		System.out.println("Got the " + regionType + " Region: " + region.getFullPath());
 
 		// Bulk load the customers into region
-		CustomerLoader customerLoader = new CustomerLoader(customers);
-		customerLoader.bulkInsertion();
+		CustomerLoader customerLoader = new CustomerLoader(region);
+		customerLoader.preLoad();
 
-		System.out.println(customers.size()
-				+ " records are successfully loaded");
+		System.out.println(region.size() + " records are successfully loaded");
 
-		// Close cache
 		cache.close();
-
 	}
 }

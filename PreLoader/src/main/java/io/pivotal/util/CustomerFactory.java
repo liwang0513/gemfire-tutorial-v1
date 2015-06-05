@@ -9,7 +9,8 @@ public class CustomerFactory {
 	public Customer generateCustomer(int key) {
 		int firstNameIx = random.nextInt(firstNames.size());
 		int lastNameIx = random.nextInt(lastNames.size());
-		return new Customer(new Integer(key), firstNames.get(firstNameIx),
+		return new Customer(new Integer(key), 
+				firstNames.get(firstNameIx),
 				lastNames.get(lastNameIx));
 	}
 
@@ -226,5 +227,4 @@ public class CustomerFactory {
 			add("Oneal");
 		}
 	};
-	
 }
