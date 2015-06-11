@@ -28,7 +28,7 @@ public class VerifyDataLocations {
 
 		Set<Map.Entry<Integer, Customer>> entries = customers.entrySet();
 
-		for (Map.Entry entry : entries) {
+		for (Map.Entry<Integer, Customer> entry : entries) {
 
 			DistributedMember member = PartitionRegionHelper
 					.getPrimaryMemberForKey(customers,
