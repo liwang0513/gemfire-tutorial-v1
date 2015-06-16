@@ -16,6 +16,7 @@ public class PreLoader {
 
 		// Get the customer region
 		Region<Integer, Customer> customers = cache.getRegion("Customer");
+		//System.out.println("Got the Customer Region: " + customers);
 
 		// Load 20 customers into region
 		CustomerLoader customerLoader = new CustomerLoader(customers);
