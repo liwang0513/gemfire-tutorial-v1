@@ -1,7 +1,7 @@
 #! /bin/bash
 
 gfsh << !
-start server --name=server1 --cache-xml-file=config/cache.xml
+start server --name=server1 --cache-xml-file=config/server-cache.xml
 exit
 !
 

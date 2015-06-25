@@ -5,7 +5,7 @@
 
 <cache>
     
-    <pdx read-serialized="true">
+    <pdx read-serialized="false">
         <pdx-serializer>
             <class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
             <parameter name="classes">

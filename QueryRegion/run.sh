@@ -1,15 +1,17 @@
 #! /bin/bash
 
 gfsh << !
-start server --name=server1 --cache-xml-file=config/cache.xml
+start server --name=server1 --cache-xml-file=config/server-cache.xml
 exit
 !
 
 echo $'\nLoading data...'; sleep 1;
 
-java -cp $GEMFIRE/lib/server-dependencies.jar:lib/QueryRegion.jar io.pivotal.app.QueryRegion
+java -cp $GEMFIRE/lib/server-dependencies.jar:lib/QueryRegion.jar io.pivotal.app.PreLoader
 
-read -p $'\nPress any key to stop servers...'
+echo $'\nVerifying data...'; sleep 1;
+
+java -cp $GEMFIRE/lib/server-dependencies.jar:lib/QueryRegion.jar io.pivotal.app.QueryData
 
 gfsh << !
 stop server --dir=server1

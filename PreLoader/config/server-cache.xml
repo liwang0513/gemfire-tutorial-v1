@@ -14,11 +14,9 @@
         </pdx-serializer>
     </pdx>
 
-    <region name="Customer" >
-        <region-attributes data-policy="partition" >
-            <partition-attributes redundant-copies="1" total-num-buckets="11"/>
-        </region-attributes>
-    </region>
+    <region name="Customer">
+		<region-attributes refid="REPLICATE" />
+	</region>
     
 </cache>
 
