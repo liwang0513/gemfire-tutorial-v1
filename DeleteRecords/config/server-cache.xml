@@ -5,7 +5,7 @@
 
 <cache>
     
-    <pdx read-serialized="false">
+    <pdx read-serialized="true">
         <pdx-serializer>
             <class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
             <parameter name="classes">
@@ -13,7 +13,7 @@
             </parameter>
         </pdx-serializer>
     </pdx>
-
+    
     <region name="Customer">
 		<region-attributes refid="REPLICATE" />
 	</region>
