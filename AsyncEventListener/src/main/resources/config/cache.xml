@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE cache PUBLIC
+    "-//GemStone Systems, Inc.//GemFire Declarative Caching 8.0//EN"
+    "http://www.gemstone.com/dtd/cache8_0.dtd">
+
+<cache>
+    
+    <pdx read-serialized="false">
+        <pdx-serializer>
+            <class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+            <parameter name="classes">
+                <string>io.pivotal.domain.*</string>
+            </parameter>
+        </pdx-serializer>
+    </pdx>
+
+    <region name="Customer">
+		<region-attributes refid="REPLICATE" />
+	</region>
+    
+</cache>
+

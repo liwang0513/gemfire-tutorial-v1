@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE cache PUBLIC
+    "-//GemStone Systems, Inc.//GemFire Declarative Caching 8.0//EN"
+    "http://www.gemstone.com/dtd/cache8_0.dtd">
+
+<cache>
+	<async-event-queue id="sampleQueue" batch-size="10"
+		batch-time-interval="20000" parallel="true" dispatcher-threads="5">
+		<async-event-listener>
+			<class-name>io.pivotal.listener.MyEventListener</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+	<pdx read-serialized="true">
+		<pdx-serializer>
+			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.domain.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<region name="Customer">
+		<region-attributes data-policy="partition"
+			statistics-enabled="true" concurrency-level="16"
+			async-event-queue-ids="sampleQueue">
+			<partition-attributes redundant-copies="1"
+				total-num-buckets="113" />
+		</region-attributes>
+	</region>
+
+</cache>
+
